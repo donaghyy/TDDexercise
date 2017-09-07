@@ -21,37 +21,13 @@ public class Service {
     		store.remove(key);
     }
 
-    public int getNoFiction(){
-        int fict =0;
-
-        for (Map.Entry<Integer, Book> book : store.entrySet()) {
-            if (book.getValue().getGenre() == "Fiction"){
-                fict++;
-            }
-        }
-
-        return fict;
+    public long getNoFiction(){
+        return store.values().stream().filter(eachBook -> eachBook.getGenre().equals("Fiction")).count();
     }
 
-    public int getNoFactual(){
-        int fact =0;
+    public long getNoFactual(){
+        return store.values().stream().filter(eachBook -> eachBook.getGenre().equals("Factual")).count();
 
-        for (Map.Entry<Integer, Book> book : store.entrySet()) {
-            if (book.getValue().getGenre() == "Factual"){
-                fact++;
-            }
-        }
-
-        return fact;
-    }
-
-    public void printAll(){
-    		store.forEach((key, book) ->
-    		{
-            System.out.print("ID: " + key + "\n" + "The author is: " + book.getAuthor() + "\n"
-            		+ "The books title is: " + book.getTitle() + "\nThe Genre is: " + book.getGenre() + "\n\n");
-
-        });
     }
 
 }
